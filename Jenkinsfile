@@ -1,40 +1,24 @@
+def tomcatIp = '18.223.20.110'
+def jenkinsIp = '18.221.129.11'
 pipeline {
-    agent any
-
-//	tools {
-//		maven 'maven3.6'
-//	}
-//	environment {
-//		M2_INSTALL = "/usr/bin/mvn"
-//	}
-
-    stages {
-		stage('Clone-Repo') {
-			steps {
-				checkout scm
-			}
-		}
-	
-		stage('Build') {
-			steps {
-				sh 'mvn install -Dmaven.test.skip=true'
-			}
-		}
-		
-		stage('Unit Tests') {
-			steps {
-				sh 'mvn compiler:testCompile'
-				sh 'mvn surefire:test'
-				junit 'target/**/*.xml'
-			}
-		}
-
-	
-		stage('Deployment') {
-			steps {
-				sh 'sshpass -p "gamut" scp target/gamutgurus.war gamut@172.17.0.4:/home/gamut/Distros/apache-tomcat-8.5.50/webapps'
-				sh 'sshpass -p "gamut" ssh gamut@172.17.0.4 "/home/gamut/Distros/apache-tomcat-8.5.50/bin/startup.sh"'
-	    	}
-		}
+environment {
+    imageName = "tomcat_base"
+    registryCredential = 'docker-cred'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Deploy Image') {
+      steps{
+        sh 'ssh root@${tomcatIp}'
+        sh 'scp -i /var/lib/docker/tomcat_base root@${jenkinsIp}:/root'
+        dockerImage = lakshmansagili+/${imageName}
+        script {
+          docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
     }
+  }
 }
