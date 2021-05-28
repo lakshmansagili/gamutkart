@@ -9,6 +9,6 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-
 RUN tar -zxvf apache-tomcat-8.5.66.tar.gz
 RUN rm -rf apache-tomcat-8.5.66.tar.gz
 RUN mv apache-tomcat-8.5.66 apache-tomcat
-COPY target/gamutgurus.war /root/apache-tomcat-8.5.38/webapps
-ENTRYPOINT /root/apache-tomcat-8.5.38/bin/startup.sh && bash
+COPY /var/lib/jenkins/workspace/mypush/target/gamutgurus.war /root/apache-tomcat/webapps
+ENTRYPOINT /root/apache-tomcat/bin/startup.sh && bash
 
