@@ -1,6 +1,6 @@
  FROM ubuntu:16.04 
 MAINTAINER "lucky"
-RUN sudo su && cd /root
+CMD sudo su && cd /root
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
 ENV JAVA_HOME /usr
