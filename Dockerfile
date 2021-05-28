@@ -1,6 +1,6 @@
  FROM ubuntu:16.04 
 MAINTAINER "lucky"
-CMD sudo su && cd
+CMD sudo su && cd /root
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y wget
@@ -11,4 +11,4 @@ RUN rm -rf apache-tomcat-8.5.66.tar.gz
 RUN mv apache-tomcat-8.5.66 apache-tomcat
 COPY target/gamutgurus.war /root/apache-tomcat/webapps
 EXPOSE 8080
-ENTRYPOINT /root/apache-tomcat/bin/startup.sh && bash
+ENTRYPOINT /apache-tomcat/bin/startup.sh && bash
