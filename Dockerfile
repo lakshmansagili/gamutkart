@@ -10,4 +10,5 @@ RUN tar -zxvf apache-tomcat-8.5.66.tar.gz
 RUN rm -rf apache-tomcat-8.5.66.tar.gz
 RUN mv apache-tomcat-8.5.66 /root/apache-tomcat
 COPY target/gamutgurus.war /root/apache-tomcat/webapps
+EXPOSE 8080
 ENTRYPOINT /root/apache-tomcat/bin/startup.sh && bash
