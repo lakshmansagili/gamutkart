@@ -3,6 +3,7 @@ MAINTAINER "lucky"
 CMD sudo su && cd /root
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
+RUN apt-get install -y wget
 ENV JAVA_HOME /usr
 RUN wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz
 RUN tar -zxvf apache-tomcat-8.5.66.tar.gz
