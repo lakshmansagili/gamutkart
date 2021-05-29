@@ -27,7 +27,7 @@
 	<div class="container">
 
 		<header>
-			<h1>Gamut Gurus DevOps & Cloud Learning Platform</h1> 
+			<h1>Mohan Gurus DevOps & Cloud Learning Platform</h1> 
 			<h4>Contact: +91-944897 1000 Email: info@gamutgurus.com</h4> 
 		</header>
 
